@@ -1,0 +1,17 @@
+# Variables y archivos de entorno locales
+.env
+.env.*
+!.env.example
+
+# Archivos temporales y del sistema
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Archivos de respaldo
+*.bak
+*.old

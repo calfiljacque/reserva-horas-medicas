@@ -1,0 +1,46 @@
+name: DevOps - Validacion del repositorio
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  validar-proyecto:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo fuente
+        uses: actions/checkout@v4
+
+      - name: Verificar archivos obligatorios
+        shell: bash
+        run: |
+          set -e
+          for file in \
+            src/index.html \
+            src/styles.css \
+            Dockerfile \
+            docker-compose.yml \
+            .gitignore \
+            .env.example \
+            README.md; do
+            test -f "$file" || { echo "Falta el archivo: $file"; exit 1; }
+            echo "OK: $file"
+          done
+
+      - name: Validar estructura HTML basica
+        shell: bash
+        run: |
+          grep -qi '<!doctype html>' src/index.html
+          grep -qi '<html lang="es">' src/index.html
+          grep -qi '</html>' src/index.html
+          echo "HTML con estructura basica valida"
+
+      - name: Comprobar proteccion de archivos sensibles
+        shell: bash
+        run: |
+          grep -qxF '.env' .gitignore
+          grep -qxF '!.env.example' .gitignore
+          echo "Reglas de .gitignore verificadas"

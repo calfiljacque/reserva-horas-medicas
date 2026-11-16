@@ -3,84 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Demostración académica de una plataforma de reserva de horas médicas.">
-  <title>Reserva Médica | Centro de Atención</title>
+  <meta name="description" content="Simulación de reserva de horas médicas.">
+  <title>Centro Médico VidaSalud | Reserva de horas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-content">
-      <a class="brand" href="#" aria-label="Inicio Reserva Médica">
-        <span class="brand-mark" aria-hidden="true">+</span>
-        <span>Centro de Atención</span>
-      </a>
-      <span class="demo-label">Sitio de demostración</span>
-    </div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">+</span><span>VidaSalud</span></div>
+    <span class="service-pill"><span class="status-dot"></span> Servicio disponible</span>
   </header>
 
   <main class="container">
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">ATENCIÓN MÁS SIMPLE</p>
-        <h1>Organiza tu próxima<br><span>hora médica</span></h1>
-        <p class="hero-description">Esta maqueta muestra cómo podría verse un servicio web de reserva de horas. Completa el formulario de ejemplo para revisar su diseño.</p>
-        <div class="trust-note"><span aria-hidden="true">✓</span> Prototipo académico · No registra reservas reales</div>
-      </div>
+      <p class="eyebrow">CENTRO MÉDICO · ATENCIÓN AMBULATORIA</p>
+      <h1>Reserva tu hora médica</h1>
+      <p class="hero-copy">Selecciona una especialidad y revisa los datos de tu atención.</p>
+    </section>
 
-      <section class="booking-card" aria-labelledby="form-title">
-        <div class="card-heading">
+    <div class="content-grid">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
           <div>
-            <p class="eyebrow">SOLICITUD DE EJEMPLO</p>
-            <h2 id="form-title">Solicitar una hora</h2>
+            <p class="step-label">SOLICITUD DE ATENCIÓN</p>
+            <h2 id="form-title">Datos de la reserva</h2>
           </div>
-          <span class="calendar-icon" aria-hidden="true">▦</span>
+          <span class="step-number">01</span>
         </div>
-        <form action="#" method="get">
-          <label for="specialty">Especialidad</label>
-          <select id="specialty" name="specialty" required>
-            <option value="">Selecciona una especialidad</option>
-            <option>Medicina general</option>
-            <option>Odontología</option>
-            <option>Nutrición</option>
-            <option>Psicología</option>
-          </select>
 
-          <div class="form-grid">
-            <div>
-              <label for="date">Fecha preferida</label>
+        <div class="notice" role="note">
+          <strong>Demostración académica:</strong> utiliza solamente datos ficticios.
+          Este formulario no envía ni almacena información.
+        </div>
+
+        <form id="booking-form">
+          <div class="field">
+            <label for="specialty">Especialidad médica</label>
+            <select id="specialty" name="specialty" required>
+              <option value="">Selecciona una especialidad</option>
+              <option>Medicina general</option>
+              <option>Cardiología</option>
+              <option>Dermatología</option>
+              <option>Traumatología</option>
+              <option>Pediatría</option>
+              <option>Ginecología</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="patient">Nombre de demostración</label>
+              <input id="patient" name="patient" type="text" placeholder="Paciente de prueba" autocomplete="off" required>
+            </div>
+            <div class="field">
+              <label for="email">Correo de ejemplo</label>
+              <input id="email" name="email" type="email" placeholder="demo@ejemplo.cl" autocomplete="off" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="date">Fecha de atención</label>
               <input id="date" name="date" type="date" required>
             </div>
-            <div>
+            <div class="field">
               <label for="time">Horario</label>
               <select id="time" name="time" required>
-                <option value="">Selecciona</option>
-                <option>Mañana</option>
-                <option>Tarde</option>
+                <option value="">Selecciona horario</option>
+                <option>09:00</option>
+                <option>10:30</option>
+                <option>11:30</option>
+                <option>14:00</option>
+                <option>15:30</option>
               </select>
             </div>
           </div>
 
-          <label for="name">Nombre de ejemplo</label>
-          <input id="name" name="name" type="text" placeholder="Ej.: Paciente de prueba" autocomplete="off">
-
-          <button type="submit">Ver solicitud de ejemplo <span aria-hidden="true">→</span></button>
-          <p class="form-disclaimer">No ingreses datos personales reales. Este formulario es solo visual y no envía ni almacena información.</p>
+          <button type="submit" class="submit-button">Simular reserva <span aria-hidden="true">→</span></button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
         </form>
       </section>
-    </section>
 
-    <section class="info-strip" aria-label="Información del servicio">
-      <article><span class="info-icon">01</span><div><h3>Elige especialidad</h3><p>Selecciona el tipo de atención.</p></div></article>
-      <article><span class="info-icon">02</span><div><h3>Revisa disponibilidad</h3><p>Indica una fecha y horario.</p></div></article>
-      <article><span class="info-icon">03</span><div><h3>Confirma en el sistema</h3><p>En una versión real se conectaría a un servicio seguro.</p></div></article>
-    </section>
+      <aside class="side-column">
+        <section class="panel info-panel">
+          <p class="step-label">INFORMACIÓN GENERAL</p>
+          <h2>Atención médica</h2>
+          <div class="info-item"><span class="info-icon">⌖</span><div><strong>Centro Médico VidaSalud</strong><small>Atención ambulatoria</small></div></div>
+          <div class="info-item"><span class="info-icon">◷</span><div><strong>Lunes a viernes</strong><small>08:00 a 18:00 horas</small></div></div>
+          <div class="info-item"><span class="info-icon">♡</span><div><strong>Atención especializada</strong><small>Distintas áreas médicas</small></div></div>
+        </section>
+
+        <section class="status-card">
+          <div class="status-card-top"><span class="status-dot"></span><span>ESTADO DEL SERVICIO</span></div>
+          <h3>Operativo</h3>
+          <p>La página está disponible en el entorno local de demostración.</p>
+          <div class="status-divider"></div>
+          <div class="status-footer"><span>Servidor web</span><strong>Nginx</strong></div>
+          <div class="status-footer"><span>Entorno</span><strong>Docker</strong></div>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      <span>© 2026 VidaSalud · Proyecto académico DevOps</span>
+      <span>Prototipo estático · No gestiona citas reales</span>
+    </footer>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <span>© 2026 Centro de Atención · Proyecto académico</span>
-      <span>Prototipo sin almacenamiento de datos</span>
-    </div>
-  </footer>
+  <script>
+    const form = document.getElementById("booking-form");
+    const message = document.getElementById("form-message");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      message.textContent = "Simulación completada. No se ha enviado ni guardado ninguna reserva.";
+      form.reset();
+    });
+  </script>
 </body>
 </html>
